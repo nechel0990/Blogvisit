@@ -1,0 +1,8 @@
+{
+  "name": "traffic-bot",
+  "version": "1.0.0",
+  "main": "bot/automate.js",
+  "dependencies": {
+    "puppeteer": "^21.3.8"
+  }
+}
