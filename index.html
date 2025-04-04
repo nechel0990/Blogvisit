@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Traffic Bot for Blog</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding-top: 50px; }
+    input, button { margin: 10px; padding: 10px; width: 300px; }
+    #msg { font-size: 16px; color: green; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Auto Traffic Sender</h1>
+  <input type="text" id="url" placeholder="Enter your blog URL" /><br>
+  <input type="number" id="visits" placeholder="Number of visits" /><br>
+  <input type="number" id="duration" placeholder="Total time in minutes" /><br>
+  <button onclick="startTraffic()">Start Sending Traffic</button>
+  <div id="msg"></div>
+
+  <script>
+    async function startTraffic() {
+      const url = document.getElementById("url").value;
+      const visits = document.getElementById("visits").value;
+      const duration = document.getElementById("duration").value;
+      if (!url || !visits || !duration) return alert("Fill in all fields.");
+      document.getElementById("msg").innerText = "Traffic setup complete. Now upload settings.json manually.";
+
+      const settings = {
+        url: url,
+        totalVisits: parseInt(visits),
+        duration: parseInt(duration)
+      };
+
+      const blob = new Blob([JSON.stringify(settings, null, 2)], {type : 'application/json'});
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = "settings.json";
+      link.click();
+    }
+  </script>
+</body>
+</html>
